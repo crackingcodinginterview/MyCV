@@ -250,7 +250,7 @@ body{
 }
 
 .dropdown-content{
-    z-index: 1;
+    z-index: 99999;
     display: none;
     border: solid 3px #666666;
     position: absolute;
