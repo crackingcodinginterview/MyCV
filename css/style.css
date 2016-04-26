@@ -401,8 +401,8 @@ body{
 }
 
 .bgsection{
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 25px;
+    padding-bottom: 25px;
 }
 
 .bgsection:nth-child(n+3){
