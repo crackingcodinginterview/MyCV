@@ -1,0 +1,84 @@
+{
+  "profile":{
+    "pic":"images/myimage.jpg",
+    "username":"jeffweiner08",
+    "firstname":"Jeff",
+    "lastname":"Weiner",
+    "headline":"CEO at LinkedIn",
+    "location":["San Francisco Bay Area","Internet"],
+    "summary":{
+      "current":["LinkedIn","Intuit","DonorsChoose"],
+      "previous":["Malaria No More","Accel Partners","Greylock"],
+      "education":["University of Pennsylvania - The Wharton School"]
+    },
+    "follow":"4,028,248",
+    "twitter":"jeffweiner",
+    "websites":""
+  },
+  "background":{
+    "summary":{
+      "description":"Internet executive with over 20 years of experience, including general management of mid to large size organizations, corporate development, product development, business operations, and strategy. Currently CEO at LinkedIn, the web's largest and most powerful network of professionals. Prior to LinkedIn, was an Executive in Residence at Accel Partners and Greylock Partners. Primarily focused on advising the leadership teams of the firm's existing consumer technology portfolio companies while also working closely with the firm’s partners to evaluate new investment opportunities. Previously served in key leadership roles at Yahoo! for over seven years, most recently as the Executive Vice President of Yahoo!'s Network Division managing Yahoo's consumer web product portfolio, including Yahoo's Front Page, Mail, Search, and Media products. Specialties: general management, corporate development, product development, business operations, strategy, product marketing, non-profit governance"
+    },
+    "experience":
+            [
+              {
+              "position":"CEO",
+              "company":"LinkedIn",
+              "date":"December 2008 – Present (7 years 5 months)",
+              "company-img":"images/intuit_experience.png",
+              "description":"Connecting the world's professionals to make them more productive and successful. Since joining the company in December 2008, LinkedIn has expanded its global platform to 23 languages and more than 30 offices around the world, grown its membership base from 33M to more than 347M, and increased its revenue from $78M to over $2.2B in 2014."
+            },
+              {
+                "position":"CEO",
+                "company":"LinkedIn",
+                "date":"December 2008 – Present (7 years 5 months)",
+                "company-img":"images/intuit_experience.png",
+                "description":"Connecting the world's professionals to make them more productive and successful. Since joining the company in December 2008, LinkedIn has expanded its global platform to 23 languages and more than 30 offices around the world, grown its membership base from 33M to more than 347M, and increased its revenue from $78M to over $2.2B in 2014."
+              }
+            ],
+    "skill":[
+      {
+        "endorse-count":"97",
+        "skill-name":"Business Strategy"
+      },
+      {
+        "endorse-count":"97",
+        "skill-name":"Business Strategy"
+      },
+      {
+        "endorse-count":"97",
+        "skill-name":"Business Strategy"
+      }
+    ],
+    "project":[
+      {
+        "project-name":"Web 3D Project",
+        "project-description":"Worked in a team to build a framework on WebGL to facilitate developers in designing their applications to render 3D objects on their website, applied server-side ASP.NET MVC framework and client-side<br/>Javascript programing to build our framework, developed 3D games, 3D social networks and 3D<br/>museums on web platform based on this framework.<br/>Some application based on our framework:<br/>https://www.youtube.com/watch?v=_LmR-Uf3Bow<br/>https://www.youtube.com/watch?v=XW-VqTz5UiE<br/>https://www.youtube.com/watch?v=10vd4SVzohAless"
+      }
+    ],
+    "education":[
+      {
+        "school":"University of Pennsylvania - The Wharton School",
+        "degree":"Bachelor of Science",
+        "major":"Economics",
+        "education-date":"1988 – June 1992",
+        "school-img":"images/wharton_school.png"
+      },
+      {
+        "school":"University of Pennsylvania - The Wharton School",
+        "degree":"Bachelor of Science",
+        "major":"Economics",
+        "education-date":"1988 – June 1992",
+        "school-img":"images/wharton_school.png"
+      },
+      {
+        "school":"University of Pennsylvania - The Wharton School",
+        "degree":"Bachelor of Science",
+        "major":"Economics",
+        "education-date":"1988 – June 1992",
+        "school-img":"images/wharton_school.png"
+      }
+
+    ]
+  }
+}

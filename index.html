@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" ng-controller="myCtrl">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <title>{{data['profile']['firstname']+" "+data['profile']['lastname']}} | LinkedIn</title>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-top-card">
+            <div class="profile-card">
+                <div class="profile-picture">
+                    <img class="pic" src="{{data['profile']['pic']}}" width="240" height="240" alt="">
+                    <img class="zoom" src="images/zoom.png" alt="">
+                </div>
+                <div class="profile-overview">
+                    <div class="profile-overview-content">
+                        <div class="member">
+                            <div class="basic-info">
+                                <p class="fullname">{{data['profile']['firstname']+" "+data['profile']['lastname']}}</p>
+                                <p class="headline">{{data['profile']['headline']}}</p>
+                                <ul class="location">
+                                    <li ng-repeat="item in data['profile']['location']"><a href="">{{item}}</a></li>
+                                </ul>
+                            </div>
+                            <div class="account-icons">
+                                <p class="badge-container"><span class="influencericon">in</span>fluencer</p>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <table class="summary clear">
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        <a href="">Current</a>
+                                    </th>
+                                    <td>
+                                        <ul>
+                                            <li ng-repeat="item in data['profile']['summary']['current']"><a href="">{{item}}</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>
+                                        <a href="">Previous</a>
+                                    </th>
+                                    <td>
+                                        <ul>
+                                            <li ng-repeat="item in data['profile']['summary']['previous']"><a href="">{{item}}</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>
+                                        <a href="">Education</a>
+                                    </th>
+                                    <td>
+                                        <ul>
+                                            <li ng-repeat="item in data['profile']['summary']['education']"><a href="">{{item}}</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="profile-aux">
+                        <div class="profile-action">
+                            <div class="follow-group">
+                                <a class="follow-button" href="">Follow
+                                    <span class="follow-tooltip">Get updates on what {{data['profile']['firstname']}} is sharing publicly.</span>
+                                </a>
+                                <div class="follow-dropdown" href="">
+                                    <i class="dropdown-arrow fa fa-caret-down" aria-hidden="true"></i>
+                                    <div class="dropdown-content">
+                                        <div class="part1">
+                                            <a href="">View recent activity</a>
+                                            <a href="">Send {{data['profile']['firstname']}} InMail</a>
+                                            <a href="">Connect</a>
+                                        </div>
+                                        <div class="part2">
+                                            <a href="">Share profile</a>
+                                            <a href="">Save to PDF</a>
+                                            <a href="">Block or report</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="connect-group">
+                                <p>Know {{data['profile']['firstname']}}?</p>
+                                <a class="connect-button" href="">Connect</a>
+                            </div>
+                        </div>
+                        <div class="follower-count">
+                            <p class="follower-str"><span class="number">{{data['profile']['follow']}}</span> followers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-extras clear">
+                <div class="contact-info" ng-show="showmore">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <th><p><i class="fa fa-twitter" aria-hidden="true"></i>  Twitter</p></th>
+                            <td><a href="">{{data['profile']['twitter']}}</a></td>
+                        </tr>
+                        <tr>
+                            <th><p><i class="fa fa-file-o" aria-hidden="true"></i>  Websites</p></th>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="profile-detail">
+                    <div class="public-profile">
+                        <a class="user-link" href="">
+                            <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                            <p>https://www.linkedin.com/in/{{data['profile']['username']}}</p>
+                        </a>
+                    </div>
+                    <div class="show-more-info">
+                        <a class="showmore-link" href="" ng-click="showmore=!showmore">
+                            <i class="fa fa-folder" aria-hidden="true"></i>
+                            <p>Contact Info</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="background">
+            <p>Background</p>
+            <div class="bgsection summary">
+                <div class="bgtitle">
+                    <img src="images/summary_logo.png" alt="">
+                    <p>Summary</p>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear bgcontent">
+                    <p class="description" ng-bind-html="data['background']['summary']['description']|to_trusted"></p>
+                </div>
+            </div>
+            <div class="bgsection experience">
+                <div class="bgtitle">
+                    <img src="images/experience_logo.png" alt="">
+                    <p>Experience</p>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear bgcontent">
+                    <div class="box" ng-repeat="item in data['background']['experience']">
+                        <div class="job">
+                            <div class="left">
+                                <h4 class="position"><a href="">{{item['position']}}</a></h4>
+                                <h5 class="company"><a href="">{{item['company']}}</a></h5>
+                                <p class="date">{{item['date']}}</p>
+                            </div>
+                            <div class="right">
+                                <img class="company-img" src="{{item['company-img']}}" alt="">
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <p class="clear description" ng-bind-html="item['description']|to_trusted"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="bgsection skill">
+                <div class="bgtitle">
+                    <img src="images/skill_logo.png" alt="">
+                    <p>Skills</p>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear bgcontent">
+                    <p>Top Skills</p>
+                    <div class="clear box" ng-repeat="item in data['background']['skill']">
+                        <a class="endorse-count" href="">{{item['endorse-count']}}</a>
+                        <a class="skill-name" href="">{{item['skill-name']}}</a>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="bgsection project">
+                <div class="bgtitle">
+                    <img src="images/project_logo.png" alt="">
+                    <p>Projects</p>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear bgcontent">
+                    <div class="box" ng-repeat="item in data['background']['project']">
+                        <p class="project-name">{{item['project-name']}}</p>
+                        <p class="project-description" ng-bind-html="item['project-description']|to_trusted"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="bgsection education">
+                <div class="bgtitle">
+                    <img src="images/education_logo.png" alt="">
+                    <p>Education</p>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear bgcontent">
+                    <div class="clear box" ng-repeat="item in data['background']['education']">
+                        <div class="left">
+                            <h4 class="school"><a href="">{{item['school']}}</a></h4>
+                            <span class="degree">{{item['degree']}}, <a class="major" href="">{{item['major']}}</a></span>
+                            <p class="education-date">{{item['education-date']}}</p>
+                        </div>
+                        <div class="right">
+                            <img class="school-img" src="{{item['school-img']}}" width="60" height="60" alt="">
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/angular-sanitize.js"></script>
+    <script src="scripts/app.js"></script>
+</body>
+</html>
