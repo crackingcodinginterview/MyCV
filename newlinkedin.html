@@ -8,23 +8,173 @@
     <link rel="stylesheet" href="css/font-awesome.css">
     <link rel="stylesheet" href="css/reset.css">
     <title>Edit Profile | LinkedIn</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            width: 50%;
+        }
+        .background__text:not(:first-child){
+            margin-top: 5px;
+        }
+        .background__text--section{
+            font-size: 26px;
+            color: #afb2b5;
+            font-weight: 100;
+            line-height: 30px;
+        }
+        .background__text--header{
+            font-size: 18px;
+            line-height: 22px;
+            font-weight: normal;
+            color: #434649;
+        }
+        .background__text--date{
+            font-size: 13px;
+            line-height: 17px;
+            font-weight: normal;
+            color: #66696a;
+        }
+        .background__text--description{
+            color: #333;
+            font-size: 13px;
+            line-height: 17px;
+        }
+        .background__text--subheader{
+            font-size: 16px;
+            line-height: 20px;
+            font-weight: normal;
+        }
+        .background__logo{
+        }
+        .background__left{
+            float: left;
+        }
+        .background__right{
+            float: right;
+        }
+        .clearfloat{
+            clear: both;
+        }
+        .background__section{
+            position: relative;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .backgroud__header{
+        }
+        .background__box{
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .background__button{
+            position: absolute;
+            right: 0;
+            border: 0;
+            color: #666;
+            background-color: #f2f2f2;
+            padding: 0 10px;
+            height: 26px;
+            line-height: 24px;
+            font-weight: bold;
+        }
+        .background__editbutton{
+            bottom: 50px;
+        }
+        .background__addbutton{
+            top: 0;
+        }
+        .background__content{
+            margin-top: 40px;
+        }
+        .background__editform{
+            padding: 20px;
+            background-color: rgb(244, 244, 244);
+        }
+        .background__input{
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .background__label{
+            font-weight: bold;
+        }
+        .background__row:not(:first-child){
+            margin-top: 5px;
+        }
+    </style>
     <script>
         var app = angular.module('myApp', []);
         app.controller('myCtrl', function($scope, $http) {
-            $scope.save=function(curr){
-                console.log(curr.$name);
+            $scope.list=[];
+            $scope.temp="";
+            $scope.add=function(){
+                $scope.list.push($scope.temp);
+            };
+            $scope.edit=function(index){
+              $scope.list[index] = 5;
             }
         });
     </script>
 </head>
 <body>
-    <form name="form1">
-        <input name="fullname" type="text">
-        <input type="text">
-        <input type="text">
-        <input type="text">
-        <input  type="submit" value="SAVE" ng-click="save(form1)">
-    </form>
-
+    <textarea ng-model="text" name="" id="" cols="30" rows="10"></textarea>
+    <p ng-bind="text" style="white-space: pre-line;"></p>
+    <input type="text" ng-model="temp"><input type="submit" ng-click="add();">
+    <a ng-repeat="number in list" ng-click="edit('{{$index}}')">{{number}}</a>
+    <div class="background__section">
+        <h1 class="background__text--section">Experience</h1>
+        <button class="background__button background__addbutton">Add Box</button>
+        <form class="background__editform">
+            <p class="background__row">
+                <label class="background__label" for="">School</label>
+            </p>
+            <p class="background__row">
+                <input class="background__input" type="text">
+            </p>
+            <p>
+                <textarea class="background__input" name="" id="" cols="" rows="5"></textarea>
+            </p>
+            <p class="background__row">
+                <input type="submit" value="Save">
+                <input type="submit" value="Cancel">
+            </p>
+        </form>
+        <div class="background__content">
+            <div class="background__box">
+                <div class="backgroud__header">
+                    <div class="background__left">
+                        <p class="background__text background__text--header">Research Assistant</p>
+                        <p class="background__text background__text--subheader">GENPACT</p>
+                    </div>
+                    <div class="background__right">
+                        <img class="background__logo"  width="60" height="60" src="images/intuit_experience.png" alt="">
+                    </div>
+                    <div class="clearfloat"></div>
+                </div>
+                <div class="background__body">
+                    <p class="background__text background__text--date">January 2001 – January 2006</p>
+                    <p class="background__text background__text--description">fsafasfsafasfas</p>
+                </div>
+                <button class="background__button background__editbutton">Edit Box</button>
+            </div>
+            <div class="background__box">
+                <div class="backgroud__header">
+                    <div class="background__left">
+                        <p class="background__text background__text--header">Research Assistant</p>
+                        <p class="background__text background__text--subheader">GENPACT</p>
+                    </div>
+                    <div class="background__right">
+                        <img class="background__logo"  width="60" height="60" src="images/intuit_experience.png" alt="">
+                    </div>
+                    <div class="clearfloat"></div>
+                </div>
+                <div class="background__body">
+                    <p class="background__text background__text--date">January 2001 – January 2006</p>
+                    <p class="background__text background__text--description">fsafasfsafasfas</p>
+                </div>
+                <button class="background__button background__editbutton">Edit Box</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

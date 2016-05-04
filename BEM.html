@@ -8,19 +8,41 @@
         var app = angular.module('myApp', []);
         app.controller('myCtrl', function($scope, $http) {
             $scope.show_more_info=false;
-            $scope.name = "Vo Minh Quoc";
-            $scope.headline = "Student at University of Science";
-            $scope.location = "Viet Nam";
-            $scope.industry = "Program Development";
-            $scope.email = "quoc.vominh1995@gmail.com";
-            $scope.im = "quoc.vominh1995@gmail.com";
-            $scope.phone = "01649136063";
-            $scope.address = "725 Le Hong Phong, P12, Q10";
-            $scope.twitter = "khanhlinh";
-            $scope.wechat = "khanhlinh";
-            $scope.website = "vetv.vn";
-            $scope.form_show={
-                "form1" : false,
+            $scope.current_index=-1;
+            $scope.data = {
+                "name" : "Vo Minh Quoc",
+                "headline" : "Student at University of Science",
+                "location" : "Viet Nam",
+                "industry" : "Program Development",
+                "email" : "quoc.vominh1995@gmail.com",
+                "im" : "quoc.vominh1995@gmail.com",
+                "phone" : "01649136063",
+                "address" : "725 Le Hong Phong, P12, Q10",
+                "twitter" : "khanhlinh",
+                "wechat" : "khanhlinh",
+                "website" : "vetv.vn",
+                "summary" : "Im A Boy",
+                "education" : [
+                    {
+                        "id" : 0,
+                        "school": "University of Science Ho Chi Minh City",
+                        "start-year" : "2009",
+                        "end-year" : "2011",
+                        "degree" : "Master of Science",
+                        "field" : "Computer Science"
+                    },
+                    {
+                        "id" : 1,
+                        "school": "Ho Chi Minh City",
+                        "start-year" : "2009",
+                        "end-year" : "2011",
+                        "degree" : "Master of Science",
+                        "field" : "Computer Science"
+                    }
+                ]
+            };
+            $scope.form_info={
+                "form1" : {"show" : false, "properties" : {"name":""}, "first-time" : "true"},
                 "form2" : false,
                 "form3" : false,
                 "form4" : false,
@@ -29,22 +51,54 @@
                 "form7" : false,
                 "form8" : false,
                 "form9" : false,
-                "form10" : false
+                "form10" : false,
+                "form11" : {"show" : false, "properties" : {"summary":""}, "first-time" : "true"},
+                "form12" : {"show" : false, "properties" : {"school":"","start-year":"","end-year":"","degree":"","field":""}, "first-time" : "true"}
             };
             $scope.open_form=function(form_name){
-                $scope.form_show[form_name] = true;
+                $scope.form_info[form_name]["show"] = true;
             };
             $scope.close_form=function(form_name){
-                $scope.form_show[form_name] = false;
+                $scope.form_info[form_name]["show"] = false;
             };
-            $scope.edit=function(form_name){
-                $scope.temp = {};
+            $scope.edit=function(form_name,element,index){
+                $scope.current_index = index;
                 $scope.open_form(form_name);
+                if(typeof element === "undefined"){
+                    if($scope.form_info[form_name]["first-time"]){
+                        for(var property in $scope.form_info[form_name]["properties"])
+                            $scope.form_info[form_name]["properties"][property] = $scope.data[property];
+                        $scope.form_info[form_name]["first-time"]=false;
+                    }
+                }
+                else{
+                    if(index > $scope.data[element].length-1) {
+                        for(var property in $scope.form_info[form_name]["properties"])
+                            $scope.form_info[form_name]["properties"][property] = "";
+                        return;
+                    }
+                    for(var property in $scope.form_info[form_name]["properties"])
+                            $scope.form_info[form_name]["properties"][property] = $scope.data[element][index][property];
+                }
             };
-            $scope.save = function(form_name){
+            $scope.save = function(form_name,element){
                 $scope.close_form(form_name);
-                for(var prop in $scope.temp)
-                    $scope[prop] = $scope.temp[prop];
+                if(typeof element === "undefined") {
+                    for (var property in $scope.form_info[form_name]["properties"])
+                        $scope.data[property] = $scope.form_info[form_name]["properties"][property];
+                }
+                else{
+                    if($scope.current_index > $scope.data[element].length-1){
+                        var newobj = {};
+                        for(var property in $scope.form_info[form_name]["properties"])
+                            newobj[property] = $scope.form_info[form_name]["properties"][property];
+                        newobj["id"] = $scope.current_index;
+                        $scope.data[element].push(newobj);
+                        return;
+                    }
+                    for(var property in $scope.form_info[form_name]["properties"])
+                        $scope.data[element][$scope.current_index][property] = $scope.form_info[form_name]["properties"][property];
+                }
             };
             $scope.cancel = function(form_name){
                 $scope.close_form(form_name);
@@ -76,18 +130,18 @@
                                 <div class="profile-overview__wrap-editable-item editable-item editable-item--first">
                                     <div class="editable-item__field">
                                             <span class="editable-item__field-text editable-item__field-text--bigtext">
-                                                <span class="editable-item__text" ng-bind="name"></span><!--
+                                                <span class="editable-item__text" ng-bind="data['name']"></span><!--
                                             --></span><!--
                                         --><button class="editable-item__editbutton editable-item__editbutton--bigbutton" ng-click="edit('form1')">
                                             <i class="editable-item__editicon fa fa-pencil" aria-hidden="true"></i>
                                         </button>
                                     </div>
-                                    <form class="editable-item__wrap-editform editform" ng-show="form_show['form1']">
+                                    <form class="editable-item__wrap-editform editform" ng-show="form_info['form1']['show']">
                                         <p class="editform__row editform__row--firstrow">
                                             <label class="editform__label" for="">Name</label>
                                         </p>
                                         <p class="editform__row">
-                                            <input class="editform__input" type="text" ng-model="temp['name']">
+                                            <input class="editform__input" type="text" ng-model="form_info['form1']['properties']['name']">
                                         </p>
                                         <p class="editform__row">
                                             <input class="editform__submit editform__submit--save" type="submit" value="Save" ng-click="save('form1');"><!--
@@ -470,8 +524,93 @@
         </div>
     </div>
     <div class="background">
-        <div class="background__summary">
-
+        <div class="background__section">
+            <div class="background__section-header">
+                <h1 class="background__text background__text--section">Summary</h1>
+            </div>
+            <form class="background__editform" ng-show="form_info['form11']['show']">
+                <p class="background__row">
+                    <label class="background__label" for="">Description</label>
+                </p>
+                <p class="background__row">
+                    <textarea class="background__input" name="" id="" cols="30" rows="10" required ng-model="form_info['form11']['properties']['summary']"></textarea>
+                </p>
+                <p class="background__row">
+                    <input class="background__submit background__submit--save" type="submit" value="Save" ng-click="save('form11');">
+                    <input class="background__submit background__submit--cancel" type="submit" value="Cancel" ng-click="cancel('form11');">
+                </p>
+            </form>
+            <div class="background__content">
+                <div class="background__box">
+                    <div class="background__body">
+                        <p class="background__text background__text--description" ng-bind="data['summary']"></p>
+                    </div>
+                    <button class="background__button background__editbutton" ng-click="edit('form11');">Edit Box</button>
+                </div>
+            </div>
+        </div>
+        <div class="background__section">
+            <div class="background__section-header">
+                <h1 class="background__text background__text--section">Education</h1>
+                <button class="background__button background__addbutton" ng-click="edit('form12','education',data['education'].length);">Add Box</button>
+            </div>
+            <form class="background__editform" ng-show="form_info['form12']['show']">
+                <p class="background__row">
+                    <label class="background__label" for="">School</label>
+                </p>
+                <p class="background__row">
+                    <input class="background__input" type="text" required ng-model="form_info['form12']['properties']['school']">
+                </p>
+                <p class="background__row">
+                    <label class="background__label" for="">Dates Attended</label>
+                </p>
+                <p class="background__row">
+                    <select ng-model="form_info['form12']['properties']['start-year']">
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                    </select>
+                    <select ng-model="form_info['form12']['properties']['end-year']">
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                    </select>
+                </p>
+                <p class="background__row">
+                    <label class="background__label" for="">Degree</label>
+                </p>
+                <p class="background__row">
+                    <input class="background__input" type="text" required ng-model="form_info['form12']['properties']['degree']">
+                </p>
+                <p class="background__row">
+                    <label class="background__label" for="">Field of Study</label>
+                </p>
+                <p class="background__row">
+                    <input class="background__input" type="text" required ng-model="form_info['form12']['properties']['field']">
+                </p>
+                <p class="background__row">
+                    <input class="background__submit background__submit--save" type="submit" value="Save" ng-click="save('form12','education');">
+                    <input class="background__submit background__submit--cancel" type="submit" value="Cancel" ng-click="cancel('form12');">
+                </p>
+            </form>
+            <div class="background__content" ng-repeat="education in data['education']">
+                <div class="background__box">
+                    <div class="backgroud__header">
+                        <p class="background__text background__text--header" ng-bind="data['education']['{{$index}}']['school']"></p>
+                        <p class="background__text background__text--subheader" ng-bind="data['education']['{{$index}}']['degree']+', '+data['education']['{{$index}}']['field']"></p>
+                    </div>
+                    <div class="background__body">
+                        <p class="background__text background__text--date" ng-bind="data['education']['{{$index}}']['start-year']+' - '+data['education']['{{$index}}']['end-year']"></p>
+                    </div>
+                    <button class="background__button background__editbutton" ng-click="edit('form12','education',education['id']);">Edit Box</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
