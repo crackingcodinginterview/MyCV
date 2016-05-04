@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" ng-controller="myCtrl">
+<head>
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <script src="scripts/angular.js"></script>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope, $http) {
+            $scope.show_more_info=false;
+            $scope.name = "Vo Minh Quoc";
+            $scope.headline = "Student at University of Science";
+            $scope.location = "Viet Nam";
+            $scope.industry = "Program Development";
+            $scope.email = "quoc.vominh1995@gmail.com";
+            $scope.im = "quoc.vominh1995@gmail.com";
+            $scope.phone = "01649136063";
+            $scope.address = "725 Le Hong Phong, P12, Q10";
+            $scope.twitter = "khanhlinh";
+            $scope.wechat = "khanhlinh";
+            $scope.website = "vetv.vn";
+            $scope.form_show={
+                "form1" : false,
+                "form2" : false,
+                "form3" : false,
+                "form4" : false,
+                "form5" : false,
+                "form6" : false,
+                "form7" : false,
+                "form8" : false,
+                "form9" : false,
+                "form10" : false
+            };
+            $scope.open_form=function(form_name){
+                $scope.form_show[form_name] = true;
+            };
+            $scope.close_form=function(form_name){
+                $scope.form_show[form_name] = false;
+            };
+            $scope.edit=function(form_name){
+                $scope.temp = {};
+                $scope.open_form(form_name);
+            };
+            $scope.save = function(form_name){
+                $scope.close_form(form_name);
+                for(var prop in $scope.temp)
+                    $scope[prop] = $scope.temp[prop];
+            };
+            $scope.cancel = function(form_name){
+                $scope.close_form(form_name);
+            };
+        });
+    </script>
+    <link rel="shortcut icon" href="images/linkedin.png" />
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Edit Profile | LinkedIn</title>
+</head>
+<body>
+<div class="container">
+    <div class="profile-top-card">
+        <div class="profile-card">
+            <div class="profile-card__wrap-profile-picture profile-picture">
+                <img class="profile-picture__myimage" src="images/myimage.jpg" width="200" height="200" alt="MYIMAGE.JPG">
+                <button class="profile-picture__buttonchange">
+                    <i class="profile-picture__buttonchangeicon fa fa-camera" aria-hidden="true"></i><!--
+                    --><span class="profile-picture__buttonchangetext">Change photo</span>
+                </button>
+            </div>
+            <div class="profile-card__wrap-profile-overview profile-overview">
+                <div class="profile-overview__content">
+                    <div class="profile-overview__member">
+                        <div class="profile-overview__account-icons"></div>
+                        <div class="profile-overview__basic-info">
+                            <div class="profile-overview__fullname">
+                                <div class="profile-overview__wrap-editable-item editable-item editable-item--first">
+                                    <div class="editable-item__field">
+                                            <span class="editable-item__field-text editable-item__field-text--bigtext">
+                                                <span class="editable-item__text" ng-bind="name"></span><!--
+                                            --></span><!--
+                                        --><button class="editable-item__editbutton editable-item__editbutton--bigbutton" ng-click="edit('form1')">
+                                            <i class="editable-item__editicon fa fa-pencil" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                    <form class="editable-item__wrap-editform editform" ng-show="form_show['form1']">
+                                        <p class="editform__row editform__row--firstrow">
+                                            <label class="editform__label" for="">Name</label>
+                                        </p>
+                                        <p class="editform__row">
+                                            <input class="editform__input" type="text" ng-model="temp['name']">
+                                        </p>
+                                        <p class="editform__row">
+                                            <input class="editform__submit editform__submit--save" type="submit" value="Save" ng-click="save('form1');"><!--
+                                            --><input class="editform__submit editform__submit--cancel" type="submit" value="Cancel" ng-click="cancel('form1');">
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="profile-overview__headline">
+                                <div class="profile-overview__wrap-editable-item editable-item">
+                                    <div class="editable-item__field">
+                                            <span class="editable-item__field-text editable-item__field-text--normaltext">
+                                                <span class="editable-item__text" ng-bind="headline"></span><!--
+                                            --></span><!--
+                                        --><button class="editable-item__editbutton editable-item__editbutton--normalbutton" ng-click="edit('form2');">
+                                            <i class="editable-item__editicon fa fa-pencil" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                    <form class="editable-item__wrap-editform editform" ng-show="form_show['form2']">
+                                        <p class="editform__row">
+                                            <label class="editform__label" for="">Your professional headline</label>
+                                        </p>
+                                        <p class="editform__row">
+                                            <input class="editform__input" type="text" ng-model="temp['headline']">
+                                        </p>
+                                        <p class="editform__row">
+                                            <input class="editform__submit editform__submit--save" type="submit" value="Save" ng-click="save('form2');">
+                                            <input class="editform__submit editform__submit--cancel" type="submit" value="Cancel" ng-click="cancel('form2');">
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="profile-overview__location">
+                                <div class="profile-overview__wrap-editable-item editable-item">
+                                    <div class="editable-item__field">
+                                        <dl class="editable-item__field-text editable-item__field-text--inlinelist editable-item__field-text--smalltext"><!--
+                                                --><dt class="editable-item__listitem editable-item__listitem--hide">Location</dt><!--
+                                                --><dd class="editable-item__listitem editable-item__listitem--inlineblock editable-item__listitem--first" ng-bind="location"></dd><!--
+                                                --><dt class="editable-item__listitem editable-item__listitem--hide">Industry</dt><!--
+                                                --><dd class="editable-item__listitem editable-item__listitem--inlineblock editable-item__listitem--last" ng-bind="industry">Program Development</dd><!--
+                                            --></dl><!--
+                                        --><button class="editable-item__editbutton editable-item__editbutton--smallbutton" ng-click="edit('form3');">
+                                            <i class="editable-item__editicon fa fa-pencil" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                    <form class="editable-item__wrap-editform editform" ng-show="form_show['form3']">
+                                        <p class="editform__row">
+                                            <label class="editform__label" for="">Country</label>
+                                        </p>
+                                        <p class="editform__row">
+                                            <input class="editform__input" type="text" ng-model="temp['location']">
+                                        </p>
+                                        <p class="editform__row">
+                                            <label class="editform__label" for="">Postal code</label>
+                                        </p>
+                                        <p class="editform__row">
+                                            <input class="editform__input" type="text" ng-model="temp['postalcode']">
+                                        </p>
+                                        <p class="editform__row">
+                                            <label class="editform__label" for="">Industry</label>
+                                        </p>
+                                        <p class="editform__row">
+                                            <input class="editform__input" type="text" ng-model="temp['industry']">
+                                        </p>
+                                        <p class="editform__row">
+                                            <input class="editform__submit editform__submit--save" type="submit" value="Save" ng-click="save('form3')">
+                                            <input class="editform__submit editform__submit--cancel" type="submit" value="Cancel" ng-click="cancel('form3')">
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="profile-overview__previous">
+                                <div class="profile-overview__wrap-editable-item editable-item">
+                                    <table>
+                                        <tbody>
+                                        <tr>
+                                            <th class="editable-item__tableheader editable-item__field-text--smalltext">Previous</th>
+                                            <td>
+                                                <div class="editable-item__field">
+                                                    <ol class="editable-item__field-text editable-item__field-text--inlinelist editable-item__field-text--normaltext">
+                                                        <li class="editable-item__listitem editable-item__listitem--inlineblock">GENPAC,</li><!--
+                                                            --><li class="editable-item__listitem editable-item__listitem--inlineblock">GENPAC,</li><!--
+                                                            --><li class="editable-item__listitem editable-item__listitem--inlineblock">GENPAC,</li><!--
+                                                            --><li class="editable-item__listitem editable-item__listitem--inlineblock">GENPAC</li>
+                                                    </ol><!--
+                                                        --><button class="editable-item__editbutton editable-item__editbutton--normalbutton">
+                                                        <i class="editable-item__editicon fa fa-pencil" aria-hidden="true"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="profile-overview__current">
+                                <div class="profile-overview__wrap-editable-item editable-item">
+                                    <table>
+                                        <tbody>
+                                        <tr>
+                                            <th class="editable-item__tableheader editable-item__field-text--smalltext">Current</th>
+                                            <td>
+                                                <div class="editable-item__field">
+                                                    <ol class="editable-item__field-text editable-item__field-text--inlinelist editable-item__field-text--normaltext">
+                                                        <li class="editable-item__listitem editable-item__listitem--inlineblock">GENPAC,</li><!--
+                                                            --><li class="editable-item__listitem editable-item__listitem--inlineblock">GENPAC,</li><!--
+                                                            --><li class="editable-item__listitem editable-item__listitem--inlineblock">GENPAC,</li><!--
+                                                            --><li class="editable-item__listitem editable-item__listitem--inlineblock">GENPAC</li>
+                                                    </ol><!--
+                                                        --><button class="editable-item__editbutton editable-item__editbutton--normalbutton">
+                                                        <i class="editable-item__editicon fa fa-pencil" aria-hidden="true"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="profile-overview__education">
+                                <div class="profile-overview__wrap-editable-item editable-item">
+                                    <table>
+                                        <tbody>
+                                        <tr>
+                                            <th class="editable-item__tableheader editable-item__field-text--smalltext">Education</th>
+                                            <td>
+                                                <div class="editable-item__field">
+                                                    <ol class="editable-item__field-text editable-item__field-text--inlinelist editable-item__field-text--normaltext">
+                                                        <li class="editable-item__listitem editable-item__listitem--inlineblock">GENPAC</li>
+                                                    </ol><!--
+                                                        --><button class="editable-item__editbutton editable-item__editbutton--normalbutton">
+                                                        <i class="editable-item__editicon fa fa-pencil" aria-hidden="true"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="profile-overview__profileaux">
+                                <div class="profile-overview__profileactions">
+                                    <button class="profile-overview__buttonviewprofileas">View Profile As</button>
+                                    <div class="profile-overview__moreoptions">
+                                        <i class="profile-overview__moreoptionsicon fa fa-caret-down" aria-hidden="true"></i>
+                                        <ul class="profile-overview__moreoptionslist">
+                                            <li class="profile-overview__moreoptionslistitem"><a class="profile-overview__moreoptionslistlink" href="">View recent activity</a></li>
+                                            <li class="profile-overview__moreoptionslistitem"><a class="profile-overview__moreoptionslistlink" href="">Ask to be recommended</a></li>
+                                            <li class="profile-overview__moreoptionslistitem"><a class="profile-overview__moreoptionslistlink" href="">Create profile in another language</a></li>
+                                            <li class="profile-overview__moreoptionslistitem"><a class="profile-overview__moreoptionslistlink" href="">Save to PDF</a></li>
+                                            <li class="profile-overview__moreoptionslistitem"><a class="profile-overview__moreoptionslistlink" href="">Manage public profile settings</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="profile-overview__memberconnections">
+                                    <strong>2</strong> connections
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="profile-card-extras">
+            <div class="profile-card-extras__wrap-contact-info contact-info" ng-show="show_more_info">
+                <div class="contact-info__visible-to-your-connection">
+                    <h3 class="contact-info__title">Visible to your connections</h3>
+                    <table class="contact-info__online-contact" style="border-collapse: separate; border-spacing: 0 5px;">
+                        <tbody>
+                            <tr>
+                                <th class="editable-item__tableheader editable-item__field-text--smalltext">Email</th>
+                                <td class="profile-overview__wrap-editable-item editable-item">
+                                    <div class="editable-item__field">
+                                        <span class="editable-item__field-text editable-item__field-text--smalltext">
+                                            <span class="editable-item__text" ng-bind="email"></span>
+                                        </span>
+                                        <button class="editable-item__editbutton editable-item__editbutton--smallbutton" ng-click="edit('form4');">
+                                            <i class="editable-item__editicon fa fa-pencil" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                    <form class="editable-item__wrap-editform editform" ng-show="form_show['form4']">
+                                        <p class="editform__row">
+                                            <label class="editform__label" for="">Email</label>
+                                        </p>
+                                        <p class="editform__row">
+                                            <input class="editform__input" type="text" ng-model="temp['email']">
+                                        </p>
+                                        <p class="editform__row">
+                                            <input class="editform__submit editform__submit--save" type="submit" value="Save" ng-click="save('form4');">
+                                            <input class="editform__submit editform__submit--cancel" type="submit" value="Cancel" ng-click="cancel('form4');">
+                                        </p>
+                                    </form>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="editable-item__tableheader editable-item__field-text--smalltext">IM</th>
+                                <td class="profile-overview__wrap-editable-item editable-item">
+                                    <div class="editable-item__field">
+                                        <span class="editable-item__field-text editable-item__field-text--smalltext">
+                                            <span class="editable-item__text" ng-bind="im"></span>
+                                        </span>
+                                        <button class="editable-item__editbutton editable-item__editbutton--smallbutton" ng-click="edit('form5');">
+                                            <i class="editable-item__editicon fa fa-pencil" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                    <form class="editable-item__wrap-editform editform" ng-show="form_show['form5']">
+                                        <p class="editform__row">
+                                            <label class="editform__label" for="">IM</label>
+                                        </p>
+                                        <p class="editform__row">
+                                            <input class="editform__input" type="text" ng-model="temp['im']">
+                                        </p>
+                                        <p class="editform__row">
+                                            <input class="editform__submit editform__submit--save" type="submit" value="Save" ng-click="save('form5');">
+                                            <input class="editform__submit editform__submit--cancel" type="submit" value="Cancel" ng-click="cancel('form5');">
+                                        </p>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="contact-info__contact-info" style="border-collapse: separate; border-spacing: 0 5px;">
+                        <tbody>
+                            <tr>
+                                <th class="editable-item__tableheader editable-item__field-text--smalltext">Phone</th>
+                                <td class="profile-overview__wrap-editable-item editable-item">
+                                    <div class="editable-item__field">
+                                            <span class="editable-item__field-text editable-item__field-text--smalltext">
+                                                <span class="editable-item__text" ng-bind="phone"></span>
+                                            </span>
+                                        <button class="editable-item__editbutton editable-item__editbutton--smallbutton" ng-click="edit('form6');">
+                                            <i class="editable-item__editicon fa fa-pencil" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                    <form class="editable-item__wrap-editform editform" ng-show="form_show['form6']">
+                                        <p class="editform__row">
+                                            <label class="editform__label" for="">Phone</label>
+                                        </p>
+                                        <p class="editform__row">
+                                            <input class="editform__input" type="text" ng-model="temp['phone']">
+                                        </p>
+                                        <p class="editform__row">
+                                            <input class="editform__submit editform__submit--save" type="submit" value="Save" ng-click="save('form6');">
+                                            <input class="editform__submit editform__submit--cancel" type="submit" value="Cancel" ng-click="cancel('form6');">
+                                        </p>
+                                    </form>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="editable-item__tableheader editable-item__field-text--smalltext">Address</th>
+                                <td class="profile-overview__wrap-editable-item editable-item">
+                                    <div class="editable-item__field">
+                                            <span class="editable-item__field-text editable-item__field-text--smalltext">
+                                                <span class="editable-item__text" ng-bind="address"></span>
+                                            </span>
+                                        <button class="editable-item__editbutton editable-item__editbutton--smallbutton" ng-click="edit('form7');">
+                                            <i class="editable-item__editicon fa fa-pencil" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                    <form class="editable-item__wrap-editform editform" ng-show="form_show['form7']">
+                                        <p class="editform__row">
+                                            <label class="editform__label" for="">Address</label>
+                                        </p>
+                                        <p class="editform__row">
+                                            <input class="editform__input" type="text" ng-model="temp['address']">
+                                        </p>
+                                        <p class="editform__row">
+                                            <input class="editform__submit editform__submit--save" type="submit" value="Save" ng-click="save('form7');">
+                                            <input class="editform__submit editform__submit--cancel" type="submit" value="Cancel" ng-click="cancel('form7');">
+                                        </p>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="clearfloat"></div>
+                </div>
+                <div class="contact-info__visible-to-everyone">
+                    <h3 class="contact-info__title">Visible to everyone on LinkedIn</h3>
+                    <table style="border-collapse: separate; border-spacing: 0 5px;">
+                        <tbody>
+                            <tr>
+                                <th class="editable-item__tableheader editable-item__field-text--smalltext">Twitter</th>
+                                <td class="profile-overview__wrap-editable-item editable-item">
+                                    <div class="editable-item__field">
+                                            <span class="editable-item__field-text editable-item__field-text--smalltext">
+                                                <span class="editable-item__text" ng-bind="twitter"></span>
+                                            </span>
+                                        <button class="editable-item__editbutton editable-item__editbutton--smallbutton" ng-click="edit('form8');">
+                                            <i class="editable-item__editicon fa fa-pencil" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                    <form class="editable-item__wrap-editform editform" ng-show="form_show['form8']">
+                                        <p class="editform__row">
+                                            <label class="editform__label" for="">Twitter</label>
+                                        </p>
+                                        <p class="editform__row">
+                                            <input class="editform__input" type="text" ng-model="temp['twitter']">
+                                        </p>
+                                        <p class="editform__row">
+                                            <input class="editform__submit editform__submit--save" type="submit" value="Save" ng-click="save('form8');">
+                                            <input class="editform__submit editform__submit--cancel" type="submit" value="Cancel" ng-click="cancel('form8');">
+                                        </p>
+                                    </form>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="editable-item__tableheader editable-item__field-text--smalltext">WeChat</th>
+                                <td class="profile-overview__wrap-editable-item editable-item">
+                                    <div class="editable-item__field">
+                                            <span class="editable-item__field-text editable-item__field-text--smalltext">
+                                                <span class="editable-item__text" ng-bind="wechat"></span>
+                                            </span>
+                                        <button class="editable-item__editbutton editable-item__editbutton--smallbutton" ng-click="edit('form9');">
+                                            <i class="editable-item__editicon fa fa-pencil" aria-hidden="true"></i>
+                                        </button>
+                                        <form class="editable-item__wrap-editform editform" ng-show="form_show['form9']">
+                                            <p class="editform__row">
+                                                <label class="editform__label" for="">WeChat</label>
+                                            </p>
+                                            <p class="editform__row">
+                                                <input class="editform__input" type="text" ng-model="temp['wechat']">
+                                            </p>
+                                            <p class="editform__row">
+                                                <input class="editform__submit editform__submit--save" type="submit" value="Save" ng-click="save('form9');">
+                                                <input class="editform__submit editform__submit--cancel" type="submit" value="Cancel" ng-click="cancel('form9');">
+                                            </p>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="editable-item__tableheader editable-item__field-text--smalltext">Website</th>
+                                <td class="profile-overview__wrap-editable-item editable-item">
+                                    <div class="editable-item__field">
+                                            <span class="editable-item__field-text editable-item__field-text--smalltext">
+                                                <span class="editable-item__text" ng-bind="website"></span>
+                                            </span>
+                                        <button class="editable-item__editbutton editable-item__editbutton--smallbutton" ng-click="edit('form10');">
+                                            <i class="editable-item__editicon fa fa-pencil" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                    <form class="editable-item__wrap-editform editform" ng-show="form_show['form10']">
+                                        <p class="editform__row">
+                                            <label class="editform__label" for="">Website</label>
+                                        </p>
+                                        <p class="editform__row">
+                                            <input class="editform__input" type="text" ng-model="temp['website']">
+                                        </p>
+                                        <p class="editform__row">
+                                            <input class="editform__submit editform__submit--save" type="submit" value="Save" ng-click="save('form10');">
+                                            <input class="editform__submit editform__submit--cancel" type="submit" value="Cancel" ng-click="cancel('form10');">
+                                        </p>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="profile-card-extras__wrap-profile-actions profile-actions">
+                <div class="profile-actions__public-profile">
+                    <h5 class="profile-actions__linkedin-mylink">
+                        <i class="profile-actions__linkedin-icon fa fa-linkedin-square" aria-hidden="true"></i><!--
+                        --><span class="profile-actions__linkedin-link">https://vn.linkedin.com/in/quoc-vo-minh-98492a101</span>
+                    </h5>
+                </div>
+                <div class="profile-actions__show-more-info">
+                    <button class="profile-actions__button-show-more-info" ng-click="show_more_info=!show_more_info">
+                        <i class="profile-actions__button-show-more-info-icon fa fa-folder-open" aria-hidden="true"></i>
+                        <span class="profile-actions__button-show-more-info-text">Contact Info</span>
+                    </button>
+                </div>
+                <div class="clearfloat"></div>
+            </div>
+        </div>
+    </div>
+    <div class="background">
+        <div class="background__summary">
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
