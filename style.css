@@ -43,7 +43,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 50px;
+  height: 35px;
   color: #ffffff; }
   .profile-picture__buttonchange:hover {
     background-color: rgba(0, 0, 0, 0.7); }
@@ -355,8 +355,7 @@ body {
   background-color: #ffffff;
   position: relative;
   margin-top: 15px;
-  padding-top: 30px;
-  padding-bottom: 30px; }
+  padding-top: 30px; }
 
 .background__section-header {
   padding-left: 20px;
@@ -383,15 +382,24 @@ body {
   top: 0; }
 
 .background__editbutton {
-  bottom: 0; }
+  bottom: 10px; }
 
 .background__content {
   padding-left: 20px;
-  padding-right: 20px;
-  margin-top: 20px; }
+  padding-right: 20px; }
 
 .background__box {
-  position: relative; }
+  position: relative;
+  padding-top: 20px;
+  padding-bottom: 20px; }
+  .background__box[last-child="false"] {
+    border-bottom: solid 1px #dddddd; }
+
+.background__left {
+  float: left; }
+
+.background__right {
+  float: right; }
 
 .background__text:not(:first-child) {
   margin-top: 5px; }
@@ -446,6 +454,12 @@ body {
       background-image: -moz-linear-gradient(top, #e8e8e8 0%, #e3e3e3 13%, #d7d7d7 32%, #b9b9b9 71%, #a9a9a9 100%);
       background-image: -o-linear-gradient(top, #e8e8e8 0%, #e3e3e3 13%, #d7d7d7 32%, #b9b9b9 71%, #a9a9a9 100%);
       background-image: linear-gradient(top, #e8e8e8 0%, #e3e3e3 13%, #d7d7d7 32%, #b9b9b9 71%, #a9a9a9 100%); }
+  .background__submit--delete {
+    margin-left: 5px;
+    color: #ffffff;
+    background-color: #d9534f; }
+    .background__submit--delete:hover {
+      background-color: #c9302c; }
 
 .background__label {
   font-weight: bold; }
@@ -458,5 +472,16 @@ body {
   line-height: 17px;
   font-weight: normal;
   color: #66696a; }
+
+.background__text--header {
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: bold;
+  color: #434649; }
+
+.background__text--subheader {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: normal; }
 
 /*# sourceMappingURL=style.css.map */

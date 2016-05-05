@@ -7,12 +7,14 @@
     <script>
         var app = angular.module('myApp', []);
         app.controller('myCtrl', function($scope, $http) {
+            $scope.years = [2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016];
             $scope.show_more_info=false;
             $scope.current_index=-1;
             $scope.data = {
                 "name" : "Vo Minh Quoc",
                 "headline" : "Student at University of Science",
-                "location" : "Viet Nam",
+                "country" : "Viet Nam",
+                "postalcode" : "72999",
                 "industry" : "Program Development",
                 "email" : "quoc.vominh1995@gmail.com",
                 "im" : "quoc.vominh1995@gmail.com",
@@ -22,38 +24,76 @@
                 "wechat" : "khanhlinh",
                 "website" : "vetv.vn",
                 "summary" : "Im A Boy",
+                "experience" : [
+                    {
+                        "company-name" : "GENPACT",
+                        "title" : "Research Assistant",
+                        "imageurl" : "https://media.licdn.com/media/AAEAAQAAAAAAAAZNAAAAJGE4YzA0OTljLWNkNWQtNDk0ZS05Zjk0LTE3YmJiYmZmZmM2YQ.png",
+                        "location" : "Viet Nam",
+                        "start-year" : "2005",
+                        "end-year" : "2009",
+                        "description" : "fafs"
+                    },
+                    {
+                        "company-name" : "GENPACT",
+                        "title" : "Research Assistant",
+                        "imageurl" : "https://media.licdn.com/media/AAEAAQAAAAAAAAZNAAAAJGE4YzA0OTljLWNkNWQtNDk0ZS05Zjk0LTE3YmJiYmZmZmM2YQ.png",
+                        "location" : "Viet Nam",
+                        "start-year" : "2005",
+                        "end-year" : "2009",
+                        "description" : "fafs"
+                    }
+                ],
                 "education" : [
                     {
-                        "id" : 0,
                         "school": "University of Science Ho Chi Minh City",
+                        "imageurl" : "",
                         "start-year" : "2009",
                         "end-year" : "2011",
                         "degree" : "Master of Science",
                         "field" : "Computer Science"
                     },
                     {
-                        "id" : 1,
                         "school": "Ho Chi Minh City",
+                        "imageurl" : "",
                         "start-year" : "2009",
                         "end-year" : "2011",
                         "degree" : "Master of Science",
                         "field" : "Computer Science"
                     }
+                ],
+                "project" : [
+                    {
+                        "name" : "Project name",
+                        "year" : "2004",
+                        "imageurl" : "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAOhAAAAJDI2MzlmYmEyLWY4NmQtNDAwMy05OWE3LTg0NzI2ZTk0YzA4Mw.jpg",
+                        "description" : "dsadasdasfasfas",
+                        "occupation" : "fasfsafas"
+                    },
+                    {
+                        "name" : "Project name",
+                        "year" : "2004",
+                        "imageurl" : "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAOhAAAAJDI2MzlmYmEyLWY4NmQtNDAwMy05OWE3LTg0NzI2ZTk0YzA4Mw.jpg",
+                        "description" : "dsadasdasfasfas",
+                        "occupation" : "fasfsafas"
+                    }
                 ]
             };
             $scope.form_info={
                 "form1" : {"show" : false, "properties" : {"name":""}, "first-time" : "true"},
-                "form2" : false,
-                "form3" : false,
-                "form4" : false,
-                "form5" : false,
-                "form6" : false,
-                "form7" : false,
-                "form8" : false,
-                "form9" : false,
-                "form10" : false,
+                "form2" : {"show" : false, "properties" : {"headline":""}, "first-time" : "true"},
+                "form3" : {"show" : false, "properties" : {"country":"","postalcode":"","industry":""}, "first-time" : "true"},
+                "form4" : {"show" : false, "properties" : {"email":""}, "first-time" : "true"},
+                "form5" : {"show" : false, "properties" : {"im":""}, "first-time" : "true"},
+                "form6" : {"show" : false, "properties" : {"phone":""}, "first-time" : "true"},
+                "form7" : {"show" : false, "properties" : {"address":""}, "first-time" : "true"},
+                "form8" : {"show" : false, "properties" : {"twitter":""}, "first-time" : "true"},
+                "form9" : {"show" : false, "properties" : {"wechat":""}, "first-time" : "true"},
+                "form10" : {"show" : false, "properties" : {"website":""}, "first-time" : "true"},
                 "form11" : {"show" : false, "properties" : {"summary":""}, "first-time" : "true"},
-                "form12" : {"show" : false, "properties" : {"school":"","start-year":"","end-year":"","degree":"","field":""}, "first-time" : "true"}
+                "form12" : {"show" : false, "properties" : {"company-name":"","title":"","location":"","start-year":"","end-year":"","imageurl":"","description":""}, "first-time" : "true"},
+                "form13" : {"show" : false, "properties" : {"school":"","start-year":"","end-year":"","degree":"","field":""}, "first-time" : "true"},
+                "form14" : {"show" : false, "properties" : {"name":"","occupation":"","year":"","imageurl":"","description":""}, "first-time" : "true"},
             };
             $scope.open_form=function(form_name){
                 $scope.form_info[form_name]["show"] = true;
@@ -100,9 +140,21 @@
                         $scope.data[element][$scope.current_index][property] = $scope.form_info[form_name]["properties"][property];
                 }
             };
+            $scope.getelement = function(element){
+                var res = [];
+                for (var i = 0; i < $scope.data[element].length; ++i) {
+                    res.push($scope.data[element][i]);
+                }
+                return res;
+            };
             $scope.cancel = function(form_name){
                 $scope.close_form(form_name);
             };
+            $scope.delete = function(form_name,element){
+                $scope.close_form(form_name);
+                if($scope.current_index < $scope.data[element].length)
+                    $scope.data[element].splice($scope.current_index, 1);
+            }
         });
     </script>
     <link rel="shortcut icon" href="images/linkedin.png" />
@@ -154,18 +206,18 @@
                                 <div class="profile-overview__wrap-editable-item editable-item">
                                     <div class="editable-item__field">
                                             <span class="editable-item__field-text editable-item__field-text--normaltext">
-                                                <span class="editable-item__text" ng-bind="headline"></span><!--
+                                                <span class="editable-item__text" ng-bind="data['headline']"></span><!--
                                             --></span><!--
                                         --><button class="editable-item__editbutton editable-item__editbutton--normalbutton" ng-click="edit('form2');">
                                             <i class="editable-item__editicon fa fa-pencil" aria-hidden="true"></i>
                                         </button>
                                     </div>
-                                    <form class="editable-item__wrap-editform editform" ng-show="form_show['form2']">
+                                    <form class="editable-item__wrap-editform editform" ng-show="form_info['form2']['show']">
                                         <p class="editform__row">
                                             <label class="editform__label" for="">Your professional headline</label>
                                         </p>
                                         <p class="editform__row">
-                                            <input class="editform__input" type="text" ng-model="temp['headline']">
+                                            <input class="editform__input" type="text" ng-model="form_info['form2']['properties']['headline']">
                                         </p>
                                         <p class="editform__row">
                                             <input class="editform__submit editform__submit--save" type="submit" value="Save" ng-click="save('form2');">
@@ -180,32 +232,32 @@
                                     <div class="editable-item__field">
                                         <dl class="editable-item__field-text editable-item__field-text--inlinelist editable-item__field-text--smalltext"><!--
                                                 --><dt class="editable-item__listitem editable-item__listitem--hide">Location</dt><!--
-                                                --><dd class="editable-item__listitem editable-item__listitem--inlineblock editable-item__listitem--first" ng-bind="location"></dd><!--
+                                                --><dd class="editable-item__listitem editable-item__listitem--inlineblock editable-item__listitem--first" ng-bind="data['country']"></dd><!--
                                                 --><dt class="editable-item__listitem editable-item__listitem--hide">Industry</dt><!--
-                                                --><dd class="editable-item__listitem editable-item__listitem--inlineblock editable-item__listitem--last" ng-bind="industry">Program Development</dd><!--
+                                                --><dd class="editable-item__listitem editable-item__listitem--inlineblock editable-item__listitem--last" ng-bind="data['industry']">Program Development</dd><!--
                                             --></dl><!--
                                         --><button class="editable-item__editbutton editable-item__editbutton--smallbutton" ng-click="edit('form3');">
                                             <i class="editable-item__editicon fa fa-pencil" aria-hidden="true"></i>
                                         </button>
                                     </div>
-                                    <form class="editable-item__wrap-editform editform" ng-show="form_show['form3']">
+                                    <form class="editable-item__wrap-editform editform" ng-show="form_info['form3']['show']">
                                         <p class="editform__row">
                                             <label class="editform__label" for="">Country</label>
                                         </p>
                                         <p class="editform__row">
-                                            <input class="editform__input" type="text" ng-model="temp['location']">
+                                            <input class="editform__input" type="text" ng-model="form_info['form3']['properties']['country']">
                                         </p>
                                         <p class="editform__row">
                                             <label class="editform__label" for="">Postal code</label>
                                         </p>
                                         <p class="editform__row">
-                                            <input class="editform__input" type="text" ng-model="temp['postalcode']">
+                                            <input class="editform__input" type="text" ng-model="form_info['form3']['properties']['postalcode']">
                                         </p>
                                         <p class="editform__row">
                                             <label class="editform__label" for="">Industry</label>
                                         </p>
                                         <p class="editform__row">
-                                            <input class="editform__input" type="text" ng-model="temp['industry']">
+                                            <input class="editform__input" type="text" ng-model="form_info['form3']['properties']['industry']">
                                         </p>
                                         <p class="editform__row">
                                             <input class="editform__submit editform__submit--save" type="submit" value="Save" ng-click="save('form3')">
@@ -320,18 +372,18 @@
                                 <td class="profile-overview__wrap-editable-item editable-item">
                                     <div class="editable-item__field">
                                         <span class="editable-item__field-text editable-item__field-text--smalltext">
-                                            <span class="editable-item__text" ng-bind="email"></span>
+                                            <span class="editable-item__text" ng-bind="data['email']"></span>
                                         </span>
                                         <button class="editable-item__editbutton editable-item__editbutton--smallbutton" ng-click="edit('form4');">
                                             <i class="editable-item__editicon fa fa-pencil" aria-hidden="true"></i>
                                         </button>
                                     </div>
-                                    <form class="editable-item__wrap-editform editform" ng-show="form_show['form4']">
+                                    <form class="editable-item__wrap-editform editform" ng-show="form_info['form4']['show']">
                                         <p class="editform__row">
                                             <label class="editform__label" for="">Email</label>
                                         </p>
                                         <p class="editform__row">
-                                            <input class="editform__input" type="text" ng-model="temp['email']">
+                                            <input class="editform__input" type="text" ng-model="form_info['form4']['properties']['email']">
                                         </p>
                                         <p class="editform__row">
                                             <input class="editform__submit editform__submit--save" type="submit" value="Save" ng-click="save('form4');">
@@ -345,18 +397,18 @@
                                 <td class="profile-overview__wrap-editable-item editable-item">
                                     <div class="editable-item__field">
                                         <span class="editable-item__field-text editable-item__field-text--smalltext">
-                                            <span class="editable-item__text" ng-bind="im"></span>
+                                            <span class="editable-item__text" ng-bind="data['im']"></span>
                                         </span>
                                         <button class="editable-item__editbutton editable-item__editbutton--smallbutton" ng-click="edit('form5');">
                                             <i class="editable-item__editicon fa fa-pencil" aria-hidden="true"></i>
                                         </button>
                                     </div>
-                                    <form class="editable-item__wrap-editform editform" ng-show="form_show['form5']">
+                                    <form class="editable-item__wrap-editform editform" ng-show="form_info['form5']['show']">
                                         <p class="editform__row">
                                             <label class="editform__label" for="">IM</label>
                                         </p>
                                         <p class="editform__row">
-                                            <input class="editform__input" type="text" ng-model="temp['im']">
+                                            <input class="editform__input" type="text" ng-model="form_info['form5']['properties']['im']">
                                         </p>
                                         <p class="editform__row">
                                             <input class="editform__submit editform__submit--save" type="submit" value="Save" ng-click="save('form5');">
@@ -374,18 +426,18 @@
                                 <td class="profile-overview__wrap-editable-item editable-item">
                                     <div class="editable-item__field">
                                             <span class="editable-item__field-text editable-item__field-text--smalltext">
-                                                <span class="editable-item__text" ng-bind="phone"></span>
+                                                <span class="editable-item__text" ng-bind="data['phone']"></span>
                                             </span>
                                         <button class="editable-item__editbutton editable-item__editbutton--smallbutton" ng-click="edit('form6');">
                                             <i class="editable-item__editicon fa fa-pencil" aria-hidden="true"></i>
                                         </button>
                                     </div>
-                                    <form class="editable-item__wrap-editform editform" ng-show="form_show['form6']">
+                                    <form class="editable-item__wrap-editform editform" ng-show="form_info['form6']['show']">
                                         <p class="editform__row">
                                             <label class="editform__label" for="">Phone</label>
                                         </p>
                                         <p class="editform__row">
-                                            <input class="editform__input" type="text" ng-model="temp['phone']">
+                                            <input class="editform__input" type="text" ng-model="form_info['form6']['properties']['phone']">
                                         </p>
                                         <p class="editform__row">
                                             <input class="editform__submit editform__submit--save" type="submit" value="Save" ng-click="save('form6');">
@@ -399,18 +451,18 @@
                                 <td class="profile-overview__wrap-editable-item editable-item">
                                     <div class="editable-item__field">
                                             <span class="editable-item__field-text editable-item__field-text--smalltext">
-                                                <span class="editable-item__text" ng-bind="address"></span>
+                                                <span class="editable-item__text" ng-bind="data['address']"></span>
                                             </span>
                                         <button class="editable-item__editbutton editable-item__editbutton--smallbutton" ng-click="edit('form7');">
                                             <i class="editable-item__editicon fa fa-pencil" aria-hidden="true"></i>
                                         </button>
                                     </div>
-                                    <form class="editable-item__wrap-editform editform" ng-show="form_show['form7']">
+                                    <form class="editable-item__wrap-editform editform" ng-show="form_info['form7']['show']">
                                         <p class="editform__row">
                                             <label class="editform__label" for="">Address</label>
                                         </p>
                                         <p class="editform__row">
-                                            <input class="editform__input" type="text" ng-model="temp['address']">
+                                            <input class="editform__input" type="text" ng-model="form_info['form7']['properties']['address']">
                                         </p>
                                         <p class="editform__row">
                                             <input class="editform__submit editform__submit--save" type="submit" value="Save" ng-click="save('form7');">
@@ -432,18 +484,18 @@
                                 <td class="profile-overview__wrap-editable-item editable-item">
                                     <div class="editable-item__field">
                                             <span class="editable-item__field-text editable-item__field-text--smalltext">
-                                                <span class="editable-item__text" ng-bind="twitter"></span>
+                                                <span class="editable-item__text" ng-bind="data['twitter']"></span>
                                             </span>
                                         <button class="editable-item__editbutton editable-item__editbutton--smallbutton" ng-click="edit('form8');">
                                             <i class="editable-item__editicon fa fa-pencil" aria-hidden="true"></i>
                                         </button>
                                     </div>
-                                    <form class="editable-item__wrap-editform editform" ng-show="form_show['form8']">
+                                    <form class="editable-item__wrap-editform editform" ng-show="form_info['form8']['show']">
                                         <p class="editform__row">
                                             <label class="editform__label" for="">Twitter</label>
                                         </p>
                                         <p class="editform__row">
-                                            <input class="editform__input" type="text" ng-model="temp['twitter']">
+                                            <input class="editform__input" type="text" ng-model="form_info['form8']['properties']['twitter']">
                                         </p>
                                         <p class="editform__row">
                                             <input class="editform__submit editform__submit--save" type="submit" value="Save" ng-click="save('form8');">
@@ -457,17 +509,17 @@
                                 <td class="profile-overview__wrap-editable-item editable-item">
                                     <div class="editable-item__field">
                                             <span class="editable-item__field-text editable-item__field-text--smalltext">
-                                                <span class="editable-item__text" ng-bind="wechat"></span>
+                                                <span class="editable-item__text" ng-bind="data['wechat']"></span>
                                             </span>
                                         <button class="editable-item__editbutton editable-item__editbutton--smallbutton" ng-click="edit('form9');">
                                             <i class="editable-item__editicon fa fa-pencil" aria-hidden="true"></i>
                                         </button>
-                                        <form class="editable-item__wrap-editform editform" ng-show="form_show['form9']">
+                                        <form class="editable-item__wrap-editform editform" ng-show="form_info['form9']['show']">
                                             <p class="editform__row">
                                                 <label class="editform__label" for="">WeChat</label>
                                             </p>
                                             <p class="editform__row">
-                                                <input class="editform__input" type="text" ng-model="temp['wechat']">
+                                                <input class="editform__input" type="text" ng-model="form_info['form9']['properties']['wechat']">
                                             </p>
                                             <p class="editform__row">
                                                 <input class="editform__submit editform__submit--save" type="submit" value="Save" ng-click="save('form9');">
@@ -482,18 +534,18 @@
                                 <td class="profile-overview__wrap-editable-item editable-item">
                                     <div class="editable-item__field">
                                             <span class="editable-item__field-text editable-item__field-text--smalltext">
-                                                <span class="editable-item__text" ng-bind="website"></span>
+                                                <span class="editable-item__text" ng-bind="data['website']"></span>
                                             </span>
                                         <button class="editable-item__editbutton editable-item__editbutton--smallbutton" ng-click="edit('form10');">
                                             <i class="editable-item__editicon fa fa-pencil" aria-hidden="true"></i>
                                         </button>
                                     </div>
-                                    <form class="editable-item__wrap-editform editform" ng-show="form_show['form10']">
+                                    <form class="editable-item__wrap-editform editform" ng-show="form_info['form10']['show']">
                                         <p class="editform__row">
                                             <label class="editform__label" for="">Website</label>
                                         </p>
                                         <p class="editform__row">
-                                            <input class="editform__input" type="text" ng-model="temp['website']">
+                                            <input class="editform__input" type="text" ng-model="form_info['form10']['properties']['website']">
                                         </p>
                                         <p class="editform__row">
                                             <input class="editform__submit editform__submit--save" type="submit" value="Save" ng-click="save('form10');">
@@ -533,7 +585,7 @@
                     <label class="background__label" for="">Description</label>
                 </p>
                 <p class="background__row">
-                    <textarea class="background__input" name="" id="" cols="30" rows="10" required ng-model="form_info['form11']['properties']['summary']"></textarea>
+                    <textarea class="background__input" cols="30" rows="10" required ng-model="form_info['form11']['properties']['summary']"></textarea>
                 </p>
                 <p class="background__row">
                     <input class="background__submit background__submit--save" type="submit" value="Save" ng-click="save('form11');">
@@ -551,64 +603,203 @@
         </div>
         <div class="background__section">
             <div class="background__section-header">
-                <h1 class="background__text background__text--section">Education</h1>
-                <button class="background__button background__addbutton" ng-click="edit('form12','education',data['education'].length);">Add Box</button>
+                <h1 class="background__text background__text--section">Experience</h1>
+                <button class="background__button background__addbutton" ng-click="edit('form12','education',data['experience'].length);">Add Box</button>
             </div>
             <form class="background__editform" ng-show="form_info['form12']['show']">
+                <p class="background__row">
+                    <label class="background__label" for="">Company Name</label>
+                </p>
+                <p class="background__row">
+                    <input class="background__input" type="text" required ng-model="form_info['form12']['properties']['company-name']">
+                </p>
+                <p class="background__row">
+                    <label class="background__label" for="">Title</label>
+                </p>
+                <p class="background__row">
+                    <input class="background__input" type="text" required ng-model="form_info['form12']['properties']['title']">
+                </p>
+                <p class="background__row">
+                    <label class="background__label" for="">Location</label>
+                </p>
+                <p class="background__row">
+                    <input class="background__input" type="text" required ng-model="form_info['form12']['properties']['location']">
+                </p>
+                <p class="background__row">
+                    <label class="background__label" for="">Image Url</label>
+                </p>
+                <p class="background__row">
+                    <input class="background__input" type="text" required ng-model="form_info['form12']['properties']['imageurl']">
+                </p>
+                <p class="background__row">
+                    <label class="background__label" for="">Time Period</label>
+                </p>
+                <p class="background__row">
+                    <select ng-model="form_info['form12']['properties']['start-year']">
+                        <option ng-repeat="year in years" value="{{year}}">{{year}}</option>
+                    </select>
+                    <select ng-model="form_info['form12']['properties']['end-year']">
+                        <option ng-repeat="year in years" value="{{year}}">{{year}}</option>
+                    </select>
+                </p>
+                <p class="background__row">
+                    <label class="background__label" for="">Description</label>
+                </p>
+                <p class="background__row">
+                    <textarea class="background__input" cols="30" rows="10" required ng-model="form_info['form12']['properties']['description']"></textarea>
+                </p>
+                <p class="background__row">
+                    <input class="background__submit background__submit--save" type="submit" value="Save" ng-click="save('form12','experience');">
+                    <input class="background__submit background__submit--cancel" type="submit" value="Cancel" ng-click="cancel('form12');">
+                    <input class="background__submit background__submit--delete" type="submit" value="Delete" ng-click="delete('form12','experience');">
+                </p>
+            </form>
+            <div class="background__content" ng-repeat="experience in data['experience']">
+                <div class="background__box" last-child="{{$last}}">
+                    <div class="background__header">
+                        <div class="background__left">
+                            <p class="background__text background__text--header" ng-bind="experience['title']"></p>
+                            <p class="background__text background__text--subheader" ng-bind="experience['company-name']"></p>
+                        </div>
+                        <div class="background__right">
+                            <img class="background__logo"  width="60" height="60" alt="" ng-show="experience['imageurl']" ng-src="{{experience['imageurl']}}">
+                        </div>
+                        <div class="clearfloat"></div>
+                    </div>
+                    <div class="background__body">
+                        <p class="background__text background__text--date" ng-bind="experience['start-year']+' - '+experience['end-year']"></p>
+                        <p class="background__text background__text--description" ng-bind="experience['description']"></p>
+                    </div>
+                    <button class="background__button background__editbutton" ng-click="edit('form12','experience',$index);">Edit Box</button>
+                </div>
+            </div>
+        </div>
+        <div class="background__section">
+            <div class="background__section-header">
+                <h1 class="background__text background__text--section">Education</h1>
+                <button class="background__button background__addbutton" ng-click="edit('form13','education',data['education'].length);">Add Box</button>
+            </div>
+            <form class="background__editform" ng-show="form_info['form13']['show']">
                 <p class="background__row">
                     <label class="background__label" for="">School</label>
                 </p>
                 <p class="background__row">
-                    <input class="background__input" type="text" required ng-model="form_info['form12']['properties']['school']">
+                    <input class="background__input" type="text" required ng-model="form_info['form13']['properties']['school']">
+                </p>
+                <p class="background__row">
+                    <label class="background__label" for="">Image Url</label>
+                </p>
+                <p class="background__row">
+                    <input class="background__input" type="text" required ng-model="form_info['form13']['properties']['imageurl']">
                 </p>
                 <p class="background__row">
                     <label class="background__label" for="">Dates Attended</label>
                 </p>
                 <p class="background__row">
-                    <select ng-model="form_info['form12']['properties']['start-year']">
-                        <option value="2009">2009</option>
-                        <option value="2010">2010</option>
-                        <option value="2011">2011</option>
-                        <option value="2012">2012</option>
-                        <option value="2013">2013</option>
+                    <select ng-model="form_info['form13']['properties']['start-year']">
+                        <option ng-repeat="year in years" value="{{year}}">{{year}}</option>
                     </select>
-                    <select ng-model="form_info['form12']['properties']['end-year']">
-                        <option value="2011">2011</option>
-                        <option value="2012">2012</option>
-                        <option value="2013">2013</option>
-                        <option value="2014">2014</option>
-                        <option value="2015">2015</option>
-                        <option value="2016">2016</option>
-                        <option value="2017">2017</option>
+                    <select ng-model="form_info['form13']['properties']['end-year']">
+                        <option ng-repeat="year in years" value="{{year}}">{{year}}</option>
                     </select>
                 </p>
                 <p class="background__row">
                     <label class="background__label" for="">Degree</label>
                 </p>
                 <p class="background__row">
-                    <input class="background__input" type="text" required ng-model="form_info['form12']['properties']['degree']">
+                    <input class="background__input" type="text" required ng-model="form_info['form13']['properties']['degree']">
                 </p>
                 <p class="background__row">
                     <label class="background__label" for="">Field of Study</label>
                 </p>
                 <p class="background__row">
-                    <input class="background__input" type="text" required ng-model="form_info['form12']['properties']['field']">
+                    <input class="background__input" type="text" required ng-model="form_info['form13']['properties']['field']">
                 </p>
                 <p class="background__row">
-                    <input class="background__submit background__submit--save" type="submit" value="Save" ng-click="save('form12','education');">
-                    <input class="background__submit background__submit--cancel" type="submit" value="Cancel" ng-click="cancel('form12');">
+                    <input class="background__submit background__submit--save" type="submit" value="Save" ng-click="save('form13','education');">
+                    <input class="background__submit background__submit--cancel" type="submit" value="Cancel" ng-click="cancel('form13');">
+                    <input class="background__submit background__submit--delete" type="submit" value="Delete" ng-click="delete('form13','school');">
                 </p>
             </form>
             <div class="background__content" ng-repeat="education in data['education']">
-                <div class="background__box">
-                    <div class="backgroud__header">
-                        <p class="background__text background__text--header" ng-bind="data['education']['{{$index}}']['school']"></p>
-                        <p class="background__text background__text--subheader" ng-bind="data['education']['{{$index}}']['degree']+', '+data['education']['{{$index}}']['field']"></p>
+                <div class="background__box" last-child="{{$last}}">
+                    <div class="background__header">
+                        <div class="background__left">
+                            <p class="background__text background__text--header" ng-bind="education['school']"></p>
+                            <p class="background__text background__text--subheader" ng-bind="education['degree']+', '+education['field']"></p>
+                        </div>
+                        <div class="background__right">
+                            <img class="background__logo"  width="60" height="60" alt="" ng-show="education['imageurl']" ng-src="{{education['imageurl']}}">
+                        </div>
+                        <div class="clearfloat"></div>
                     </div>
                     <div class="background__body">
-                        <p class="background__text background__text--date" ng-bind="data['education']['{{$index}}']['start-year']+' - '+data['education']['{{$index}}']['end-year']"></p>
+                        <p class="background__text background__text--date" ng-bind="education['start-year']+' - '+education['end-year']"></p>
                     </div>
-                    <button class="background__button background__editbutton" ng-click="edit('form12','education',education['id']);">Edit Box</button>
+                    <button class="background__button background__editbutton" ng-click="edit('form13','education',$index);">Edit Box</button>
+                </div>
+            </div>
+        </div>
+        <div class="background__section">
+            <div class="background__section-header">
+                <h1 class="background__text background__text--section">Projects</h1>
+                <button class="background__button background__addbutton" ng-click="edit('form14','project',data['project'].length);">Add Box</button>
+            </div>
+            <form class="background__editform" ng-show="form_info['form14']['show']">
+                <p class="background__row">
+                    <label class="background__label" for="">Name</label>
+                </p>
+                <p class="background__row">
+                    <input class="background__input" type="text" required ng-model="form_info['form14']['properties']['name']">
+                </p>
+                <p class="background__row">
+                    <label class="background__label" for="">Occupation</label>
+                </p>
+                <p class="background__row">
+                    <input class="background__input" type="text" required ng-model="form_info['form14']['properties']['occupation']">
+                </p>
+                <p class="background__row">
+                    <label class="background__label" for="">Year</label>
+                </p>
+                <p class="background__row">
+                    <select ng-model="form_info['form14']['properties']['year']">
+                        <option ng-repeat="year in years" value="{{year}}">{{year}}</option>
+                    </select>
+                </p>
+                <p class="background__row">
+                    <label class="background__label" for="">Image Url</label>
+                </p>
+                <p class="background__row">
+                    <input class="background__input" type="text" required ng-model="form_info['form14']['properties']['imageurl']">
+                </p>
+                <p class="background__row">
+                    <label class="background__label" for="">Description</label>
+                </p>
+                <p class="background__row">
+                    <textarea class="background__input" cols="30" rows="10" required ng-model="form_info['form14']['properties']['description']"></textarea>
+                </p>
+                <p class="background__row">
+                    <input class="background__submit background__submit--save" type="submit" value="Save" ng-click="save('form14','project');">
+                    <input class="background__submit background__submit--cancel" type="submit" value="Cancel" ng-click="cancel('form14');">
+                    <input class="background__submit background__submit--delete" type="submit" value="Delete" ng-click="delete('form14','project');">
+                </p>
+            </form>
+            <div class="background__content" ng-repeat="project in data['project']">
+                <div class="background__box" last-child="{{$last}}">
+                    <div class="background__header">
+                        <div class="background__left">
+                            <p class="background__text background__text--header" ng-bind="project['name']"></p>
+                            <p class="background__text background__text--date" ng-bind="project['year']"></p>
+                        </div>
+                        <div class="background__right">
+                            <img class="background__logo"  width="60" height="60" alt="" ng-show="project['imageurl']" ng-src="{{project['imageurl']}}">
+                        </div>
+                        <div class="clearfloat"></div>
+                    </div>
+                    <div class="background__body">
+                        <p class="background__text background__text--description" ng-bind="project['description']"></p>
+                    </div>
+                    <button class="background__button background__editbutton" ng-click="edit('form14','project',$index);">Edit Box</button>
                 </div>
             </div>
         </div>

@@ -64,7 +64,7 @@ body{
   bottom: 0;
   left: 0;
   right: 0;
-  height: 50px;
+  height: 35px;
   color: #ffffff;
 
   &:hover{
@@ -497,7 +497,6 @@ body{
   position: relative;
   margin-top: 15px;
   padding-top: 30px;
-  padding-bottom: 30px;
 }
 
 .background__section-header{
@@ -529,20 +528,32 @@ body{
 }
 
 .background__editbutton{
-  bottom: 0;
+  bottom: 10px;
 }
 .background__content{
   padding-left: 20px;
   padding-right: 20px;
-  margin-top: 20px;
 }
 
 .background__box{
   position: relative;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  &[last-child="false"]{
+    border-bottom: solid 1px rgb(221, 221, 221);
+  }
 }
 
 .background__body{
 
+}
+
+.background__left{
+  float: left;
+}
+.background__right{
+  float: right;
 }
 
 .background__text:not(:first-child){
@@ -606,6 +617,16 @@ body{
       background-image: linear-gradient(top, #e8e8e8 0%,#e3e3e3 13%,#d7d7d7 32%,#b9b9b9 71%,#a9a9a9 100%);
     }
   }
+
+  &--delete{
+    margin-left: 5px;
+    color: #ffffff;
+    background-color: #d9534f;
+
+    &:hover{
+      background-color: #c9302c;
+    }
+  }
 }
 
 
@@ -621,4 +642,17 @@ body{
   line-height: 17px;
   font-weight: normal;
   color: #66696a;
+}
+
+.background__text--header{
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: bold;
+  color: #434649;
+}
+
+.background__text--subheader{
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: normal;
 }
