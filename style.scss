@@ -82,6 +82,14 @@ body{
   margin-left: 5px;
 }
 
+.profile-picture__wrap-editform{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
 .profile-card__wrap-profile-overview{
   width: 75%;
   float: right;
@@ -165,6 +173,7 @@ body{
   margin-left: 5px;
   border: 0;
   text-align: center;
+  cursor: pointer;
 
   &:hover{
     background-color: #00a0dc;
@@ -272,7 +281,7 @@ body{
 }
 
 .editform__input{
-
+  border: solid 1px #000000;
 }
 
 .editform__submit{
@@ -468,6 +477,7 @@ body{
     padding-left: 20px;
     padding-right: 20px;
     border: 0;
+    cursor: pointer;
     background-image: -webkit-linear-gradient(top, #ececec 0%,#e1e1e1 100%);
     background-image: -moz-linear-gradient(top, #ececec 0%,#e1e1e1 100%);
     background-image: -o-linear-gradient(top, #ececec 0%,#e1e1e1 100%);
@@ -497,6 +507,7 @@ body{
   position: relative;
   margin-top: 15px;
   padding-top: 30px;
+  padding-bottom: 20px;
 }
 
 .background__section-header{
@@ -521,6 +532,12 @@ body{
   height: 26px;
   line-height: 24px;
   font-weight: bold;
+  cursor: pointer;
+
+  &:hover{
+    color: #ffffff;
+    background-color: rgb(0, 160, 220);
+  }
 }
 
 .background__addbutton{
