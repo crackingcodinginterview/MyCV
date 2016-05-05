@@ -2,14 +2,13 @@
  * Created by Administrator on 25/04/2016.
  */
 var App = angular.module('myApp', []);
-App.controller('myCtrl', function($scope, $http) {
+App.controller('myCtrl', function($scope, $http, $location, $anchorScroll) {
     $http.get('data.json')
         .then(function(res){
             $scope.data = res.data;
         });
 
-    $scope.years = [2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016];
-    $scope.show_more_info=false;
+    $scope.years = [2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017];
     $scope.current_index=-1;
     $scope.form_info={
         "form0" : {"show" : false, "properties" : {"myimage":""}, "first-time" : "true"},
@@ -28,17 +27,18 @@ App.controller('myCtrl', function($scope, $http) {
         "form13" : {"show" : false, "properties" : {"school":"","start-year":"","end-year":"","degree":"","field":""}, "first-time" : "true"},
         "form14" : {"show" : false, "properties" : {"name":"","occupation":"","year":"","imageurl":"","description":""}, "first-time" : "true"},
         "form15" : {"show" : false, "properties" : {"name":""}, "first-time" : "true"},
+        "form16" : {"show" : false}
     };
 
-    $scope.open_form=function(form_name){
+    $scope.open_form = function(form_name){
         $scope.form_info[form_name]["show"] = true;
     };
 
-    $scope.close_form=function(form_name){
+    $scope.close_form = function(form_name){
         $scope.form_info[form_name]["show"] = false;
     };
 
-    $scope.edit=function(form_name,element,index){
+    $scope.edit = function(form_name,element,index){
         $scope.current_index = index;
         $scope.open_form(form_name);
         if(typeof element === "undefined"){
@@ -87,5 +87,9 @@ App.controller('myCtrl', function($scope, $http) {
         $scope.close_form(form_name);
         if($scope.current_index < $scope.data[element].length)
             $scope.data[element].splice($scope.current_index, 1);
-    }
+    };
+
+    $scope.gotoE = function(id) {
+        $anchorScroll(id);
+    };
 });

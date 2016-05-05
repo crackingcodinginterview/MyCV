@@ -1,6 +1,6 @@
 {
   "name" : "Vo Minh Quoc",
-  "myimage" : "https://upload.wikimedia.org/wikipedia/commons/2/26/Microchip_PIC24HJ32GP202.jpg",
+  "myimage" : "images/hinhcv.jpg",
   "headline" : "Student at University of Science",
   "country" : "Viet Nam",
   "postalcode" : "72999",
@@ -22,52 +22,56 @@
       "start-year" : "2005",
       "end-year" : "2009",
       "description" : "fafs"
-    },
-    {
-      "company-name" : "GENPACT",
-      "title" : "Research Assistant",
-      "imageurl" : "https://media.licdn.com/media/AAEAAQAAAAAAAAZNAAAAJGE4YzA0OTljLWNkNWQtNDk0ZS05Zjk0LTE3YmJiYmZmZmM2YQ.png",
-      "location" : "Viet Nam",
-      "start-year" : "2005",
-      "end-year" : "2009",
-      "description" : "fafs"
     }
   ],
   "education" : [
     {
-      "school": "University of Science Ho Chi Minh City",
-      "imageurl" : "",
-      "start-year" : "2009",
-      "end-year" : "2011",
-      "degree" : "Master of Science",
+      "school": "University of Science",
+      "imageurl" : "images/hcmus.jpg",
+      "start-year" : "2013",
+      "end-year" : "2017",
+      "degree" : "Software Engineering",
       "field" : "Computer Science"
     },
     {
-      "school": "Ho Chi Minh City",
+      "school": "Di An High School",
       "imageurl" : "",
-      "start-year" : "2009",
-      "end-year" : "2011",
-      "degree" : "Master of Science",
-      "field" : "Computer Science"
+      "start-year" : "2013",
+      "end-year" : "2010",
+      "degree" : "Student",
+      "field" : "Student"
     }
   ],
   "project" : [
     {
-      "name" : "Project name",
-      "year" : "2004",
-      "imageurl" : "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAOhAAAAJDI2MzlmYmEyLWY4NmQtNDAwMy05OWE3LTg0NzI2ZTk0YzA4Mw.jpg",
-      "description" : "dsadasdasfasfas",
-      "occupation" : "fasfsafas"
+      "name" : "Traffic Exchange",
+      "year" : "2015",
+      "imageurl" : "images/traffic_exchange.jpg",
+      "description" : "Learn deeper Html, Css, Javascript and Php Using Facebook Api. ",
+      "occupation" : "PHP MVC Designer, Programmer.. "
     },
     {
-      "name" : "Project name",
-      "year" : "2004",
-      "imageurl" : "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAOhAAAAJDI2MzlmYmEyLWY4NmQtNDAwMy05OWE3LTg0NzI2ZTk0YzA4Mw.jpg",
-      "description" : "dsadasdasfasfas",
-      "occupation" : "fasfsafas"
+      "name" : "Caro Online",
+      "year" : "2015",
+      "imageurl" : "images/caro_online.jpg",
+      "description" : "Use MVVM in WPF and Use Socket.IO to make online game.",
+      "occupation" : "Leader"
+    },
+    {
+      "name" : "Graphic Drawing with Algorithm",
+      "year" : "2014",
+      "imageurl" : "images/graphic_program.jpg",
+      "description" : "Head First and Implement SharpGL With OOP and Drawing Algorithm, apply Design pattern to reuse code.",
+      "occupation" : "UI Designer, Programmer"
     }
   ],
   "skill" : [
+    {
+      "name" : "PHP"
+    },
+    {
+      "name" : "AngularJS"
+    },
     {
       "name" : "C#"
     },
